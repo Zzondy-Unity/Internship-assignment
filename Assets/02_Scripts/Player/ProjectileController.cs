@@ -2,6 +2,7 @@
 
 public class ProjectileController : MonoBehaviour
 {
+    // 화살 풀링 생각
     private Arrow _arrow;
 
     public void Init()

@@ -14,8 +14,8 @@ public class PlayerAttackController : MonoBehaviour
 
     public int Damage { get { return _player.PlayerData.damage; } }
 
-    private readonly Dictionary<AttackType, AttackStrategy> AttackStrategies =
-        new Dictionary<AttackType, AttackStrategy>()
+    private readonly Dictionary<AttackType, IAttackStrategy> AttackStrategies =
+        new Dictionary<AttackType, IAttackStrategy>()
         {
             {AttackType.Auto, new AutoAttackStrategy()},
             {AttackType.Manual, new ManualAttackStrategy()},
@@ -37,19 +37,18 @@ public class PlayerAttackController : MonoBehaviour
         else
         {
             curAttackType = attackType;
-            AttackStrategies[curAttackType].Init(this);
+            AttackStrategies[curAttackType].Init(_player);
             return true;
         }
     }
 
-    /// <summary>
-    /// 애니메이션 이벤트함수
-    /// 투사체를 발사합니다.
-    /// </summary>
-    public void AutoAttack()
+    public void ShootArrow()
     {
-        if (curAttackType == AttackType.Manual) return;
-        
-        AttackStrategies[curAttackType].Attack(Damage);
+        _player.projectileController.Fire(GetTargetPosition(), _player.PlayerData.damage);
+    }
+
+    private Vector3 GetTargetPosition()
+    {
+        return Managers.Spawner.curMonster.transform.position;
     }
 }

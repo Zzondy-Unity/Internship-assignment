@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-public class ManualAttackStrategy : AttackStrategy
+public class ManualAttackStrategy : IAttackStrategy
 {
-    private PlayerAttackController _playerAttackController;
+    private Player _player;
     
-    public override void Attack(int damage)
+    public void Init(Player player)
     {
-        
+        _player = player;
+        //ChangeState to manualAttackState
     }
 }

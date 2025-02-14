@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    
-    
     private Rigidbody2D rb;
     private int _damage;
     private int _speed = 10;
