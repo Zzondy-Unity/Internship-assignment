@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public PlayerData playerData = new PlayerData();
-    public PlayerAttackController AttackController;
+    public PlayerData PlayerData;
+    public PlayerAttackController attackController;
+    public ProjectileController projectileController;
     
     public void Init()
     {
-        AttackController = GetComponent<PlayerAttackController>();
-        AttackController.Init(this);
+        PlayerData = new PlayerData();
+        attackController = GetComponent<PlayerAttackController>();
+        projectileController = GetComponent<ProjectileController>();
+        
+        projectileController.Init();
+        attackController.Init(this);
     }
 }

@@ -7,6 +7,6 @@
 
     private void GameStart()
     {
-        Managers.Instance._spawnManager.SpawnMonsters();
+        Managers.Spawner.SpawnMonsters();
     }
 }

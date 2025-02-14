@@ -3,10 +3,11 @@
 public class SpawnManager  : IManager
 {
     private List<Monster> monsters = new List<Monster>();
+    public Monster curMonster;
 
     public void Init()
     {
-        List<MonsterDataSO> datas = Managers.Instance._dataManager.GetMonsterDataSOs();
+        List<MonsterDataSO> datas = Managers.Data.GetMonsterDataSOs();
         foreach (var data in datas)
         {
             //TODO :: 각 몬스터마다 맞는 SO를 생성해서 넣어줌

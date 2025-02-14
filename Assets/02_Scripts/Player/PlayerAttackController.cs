@@ -10,28 +10,21 @@ public enum AttackType
 public class PlayerAttackController : MonoBehaviour
 {
     private Player _player;
-    private bool isAutoAttack = true;
     private AttackType curAttackType = AttackType.Auto;
 
-    public int Damage
-    {
-        get
-        {
-            return _player.playerData.damage;
-        }
-    }
+    public int Damage { get { return _player.PlayerData.damage; } }
 
-    private readonly Dictionary<AttackType, IAttackStrategy> AttackStrategies =
-        new Dictionary<AttackType, IAttackStrategy>()
+    private readonly Dictionary<AttackType, AttackStrategy> AttackStrategies =
+        new Dictionary<AttackType, AttackStrategy>()
         {
-             
+            {AttackType.Auto, new AutoAttackStrategy()},
+            {AttackType.Manual, new ManualAttackStrategy()},
         };
     
     public void Init(Player player)
     {
         _player = player;
         
-        isAutoAttack = true;
         ChangeAttackStrategy(AttackType.Auto);
     }
 
@@ -47,5 +40,16 @@ public class PlayerAttackController : MonoBehaviour
             AttackStrategies[curAttackType].Init(this);
             return true;
         }
+    }
+
+    /// <summary>
+    /// 애니메이션 이벤트함수
+    /// 투사체를 발사합니다.
+    /// </summary>
+    public void AutoAttack()
+    {
+        if (curAttackType == AttackType.Manual) return;
+        
+        AttackStrategies[curAttackType].Attack(Damage);
     }
 }

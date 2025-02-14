@@ -6,7 +6,6 @@ public abstract class Monster : MonoBehaviour, IDamageable
     
     protected MonsterDataSO data;
     protected int health;
-
     
     public void Initialize(MonsterDataSO monsterDataSO)
     {
