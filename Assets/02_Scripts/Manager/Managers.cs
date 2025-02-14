@@ -3,6 +3,7 @@ using UnityEngine;
 public class Managers : SingletonDontDestroy<Managers>
 {
     public DataManager _dataManager;
+    public SpawnManager _spawnManager;
 
     protected override void Awake()
     {
@@ -12,13 +13,15 @@ public class Managers : SingletonDontDestroy<Managers>
         InitializeManagers();
     }
 
-    private void InitializeManagers()
-    {
-        _dataManager.Init();
-    }
-
     private void CreateManagers()
     {
         _dataManager = new DataManager();
+        _spawnManager = new SpawnManager();
+    }
+    
+    private void InitializeManagers()
+    {
+        _dataManager.Init();
+        _spawnManager.Init();
     }
 }

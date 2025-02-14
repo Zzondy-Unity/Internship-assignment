@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class DataManager
+public class DataManager : IManager
 {
-    public List<MonsterDataSO> monsterDataSOs = new();
+    private List<MonsterDataSO> monsterDataSOs = new();
     
     public void Init()
     {
         ReadSampleMonster();
+    }
+
+    public List<MonsterDataSO> GetMonsterDataSOs()
+    {
+        return monsterDataSOs;
     }
     
     private void ReadSampleMonster()
