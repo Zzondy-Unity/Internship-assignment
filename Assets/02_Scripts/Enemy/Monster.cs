@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public abstract class Monster : MonoBehaviour, IDamageable
+public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
 {
     public MonsterDataSO data { get; protected set; }
     public bool isAlive = true;
@@ -58,5 +59,11 @@ public abstract class Monster : MonoBehaviour, IDamageable
     public void SetWalkPoint(Transform walkPoint)
     {
         this.walkPoint = walkPoint;
+    }
+    
+    
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Managers.UI.Show<MonsterIndicator>(this);
     }
 }

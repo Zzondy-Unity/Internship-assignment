@@ -9,6 +9,7 @@ public class Managers : SingletonDontDestroy<Managers>
     private GameManager _gameManager;
     private CoroutineManager _coroutineManager;
     private ObjectPoolManager _objectPoolManager;
+    private UIManager _uiManager;
 
     public static DataManager Data { get {return Instance._dataManager; } }
     public static SpawnManager Spawner { get { return Instance._spawnManager; } }
@@ -17,6 +18,7 @@ public class Managers : SingletonDontDestroy<Managers>
     public static GameManager Game { get { return Instance._gameManager; } }
     public static CoroutineManager Coroutine { get { return Instance._coroutineManager; } }
     public static ObjectPoolManager ObjectPool { get { return Instance._objectPoolManager; } }
+    public static UIManager UI { get { return Instance._uiManager; } }
 
     protected override void Awake()
     {
@@ -34,6 +36,7 @@ public class Managers : SingletonDontDestroy<Managers>
         _coroutineManager = CreateManager<CoroutineManager>(Instance.transform);
         _spawnManager = CreateManager<SpawnManager>(Instance.transform);
         _characterManager = CreateManager<CharacterManager>(Instance.transform);
+        _uiManager = CreateManager<UIManager>(Instance.transform);
 
         _objectPoolManager.Init();
         _coroutineManager.Init();
@@ -42,6 +45,7 @@ public class Managers : SingletonDontDestroy<Managers>
         _spawnManager.Init();
         _characterManager.Init();
         _gameManager.Init();
+        _uiManager.Init();
     }
 
     private T CreateManager<T>(Transform parent) where T : Component, IManager
