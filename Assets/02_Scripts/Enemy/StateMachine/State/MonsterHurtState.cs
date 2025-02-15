@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MonsterHurtState : MonsterBaseState
 {
@@ -11,6 +10,7 @@ public class MonsterHurtState : MonsterBaseState
     {
         base.Enter();
         StartAnimation(controller.monsterAnimationData.HurtParameterHash);
+        Debug.Log("MonsterHurtState Enter");
     }
 
     public override void Exit()

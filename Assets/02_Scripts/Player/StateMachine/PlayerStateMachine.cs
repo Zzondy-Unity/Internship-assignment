@@ -27,7 +27,6 @@ public class PlayerStateMachine : StateMachine
         if (states.TryGetValue(typeof(T), out var state))
         {
             ChangeState(state);
-            Debug.Log($"Player state changed to {typeof(T).Name}");
             return state;
         }
         return null;

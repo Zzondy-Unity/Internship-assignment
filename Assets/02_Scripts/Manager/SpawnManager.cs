@@ -31,7 +31,8 @@ public class SpawnManager  : MonoBehaviour, IManager
     {
         if (curMonster != null && curMonster.isAlive) return;
         int monsterIndex = 1000 + curIndex;
-
+        
+        Debug.Log($"monsterIndex: {monsterIndex}");
         if (deadMonsters.ContainsKey(monsterIndex))
         {
             curMonster.monsterController.SetWalkPoint(walkPoint);

@@ -7,9 +7,11 @@ public abstract class Monster : MonoBehaviour, IDamageable
 
     public MonsterController monsterController;
     private Transform walkPoint;
+    public SpriteRenderer spriteRenderer { get; protected set; }
     
     public virtual void Initialize(MonsterDataSO monsterDataSO)
     {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         data = monsterDataSO;
         
         monsterController = GetComponent<MonsterController>();
@@ -26,10 +28,11 @@ public abstract class Monster : MonoBehaviour, IDamageable
     public Monster Revive(Transform spawnPoint)
     {
         if (isAlive) return null;
-        
+
         isAlive = true;
         monsterController.Heal(data.health);
         this.transform.position = spawnPoint.position;
+        gameObject.SetActive(true);
         WalkToWalkPoint();
         return this;
     }

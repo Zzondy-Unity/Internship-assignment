@@ -4,7 +4,7 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     public Monster monster { get; private set; }
-    public MonsterAnimationData monsterAnimationData { get; private set; }
+    [field : SerializeField] public MonsterAnimationData monsterAnimationData { get; private set; }
     public Animator animator { get; private set; }
     private int health = 0;
     public Transform walkPoint { get; private set; }
@@ -56,6 +56,7 @@ public class MonsterController : MonoBehaviour
         }
         else
         {
+            Debug.Log($"Change to HurtState. health is {health}");
             stateMachine.ChangeState<MonsterHurtState>();
         }
         return true;
@@ -65,8 +66,6 @@ public class MonsterController : MonoBehaviour
     {
         stateMachine.ChangeState<MonsterDeathState>();
         EventManager.Publish(GameEventType.OnMonsterDead, monster);
-        
-        gameObject.layer = LayerMask.NameToLayer("IgnoreRaycast");
     }
 
     public void SetWalkPoint(Transform walkPoint)

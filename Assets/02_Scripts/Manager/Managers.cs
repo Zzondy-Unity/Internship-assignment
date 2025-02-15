@@ -7,12 +7,14 @@ public class Managers : SingletonDontDestroy<Managers>
     private CharacterManager _characterManager;
     private ResourceManager _resourceManager;
     private GameManager _gameManager;
+    private CoroutineManager _coroutineManager;
 
     public static DataManager Data { get {return Instance._dataManager; } }
     public static SpawnManager Spawner { get { return Instance._spawnManager; } }
     public static CharacterManager Character { get { return Instance._characterManager; } }
     public static ResourceManager Resource { get { return Instance._resourceManager; } }
     public static GameManager Game { get { return Instance._gameManager; } }
+    public static CoroutineManager Coroutine { get { return Instance._coroutineManager; } }
 
     protected override void Awake()
     {
@@ -26,9 +28,11 @@ public class Managers : SingletonDontDestroy<Managers>
         _gameManager = new GameManager();
         _dataManager = new DataManager();
         _resourceManager = new ResourceManager();
+        _coroutineManager = CreateManager<CoroutineManager>(Instance.transform);
         _spawnManager = CreateManager<SpawnManager>(Instance.transform);
         _characterManager = CreateManager<CharacterManager>(Instance.transform);
         
+        _coroutineManager.Init();
         _resourceManager.Init();
         _dataManager.Init();
         _spawnManager.Init();

@@ -17,6 +17,7 @@ public class MonsterStateMachine : StateMachine
             {typeof(MonsterIdleState), new MonsterIdleState(monster.monsterController)},
             {typeof(MonsterWalkState), new MonsterWalkState(monster.monsterController)},
             {typeof(MonsterDeathState), new MonsterDeathState(monster.monsterController)},
+            {typeof(MonsterHurtState), new MonsterHurtState(monster.monsterController)},
         };
     }
 
@@ -25,7 +26,6 @@ public class MonsterStateMachine : StateMachine
         if (states.TryGetValue(typeof(T), out var state))
         {
             ChangeState(state);
-            Debug.Log($"Monster state changed to {typeof(T).Name}");
             return state;
         }
 
