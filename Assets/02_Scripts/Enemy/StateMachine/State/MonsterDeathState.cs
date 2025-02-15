@@ -34,7 +34,7 @@ public class MonsterDeathState : MonsterBaseState
     {
         SpriteRenderer SR = controller.monster.spriteRenderer;
         yield return CachedWaitForSeconds.Get(deathAnimationTime);
-        
+        controller.monster.monsterHealthSystem.HideHPBar();
         for (float t = 0; t < 1; t += Time.deltaTime * 0.5f)
         {
             SR.color = new Color(1, 1, 1, 1 - t);
