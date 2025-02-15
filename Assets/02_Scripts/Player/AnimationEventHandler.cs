@@ -4,6 +4,6 @@ public class AnimationEventHandler : MonoBehaviour
 {
     public void OnAttackAnimationEvent()
     {
-        Managers.Character.player.attackController.ShootArrow();
+        EventManager.Publish(GameEventType.OnShoot);
     }
 }

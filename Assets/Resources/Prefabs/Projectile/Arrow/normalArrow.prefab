@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2039255584065112127}
   - component: {fileID: 7488040867645637580}
   - component: {fileID: 1168375459710892611}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: normalArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b271d3cd2904a1194d7d125d50b52ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPath: Prefabs/Projectile/Arrow
 --- !u!50 &7488040867645637580
 Rigidbody2D:
   serializedVersion: 5
@@ -105,7 +104,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -132,7 +131,7 @@ GameObject:
   - component: {fileID: 3392872032608820064}
   - component: {fileID: 2280950613117093463}
   - component: {fileID: 7287133341747729525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

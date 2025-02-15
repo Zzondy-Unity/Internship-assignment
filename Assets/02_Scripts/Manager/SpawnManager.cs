@@ -30,25 +30,26 @@ public class SpawnManager  : MonoBehaviour, IManager
     public void SpawnMonsters()
     {
         if (curMonster != null && curMonster.isAlive) return;
-        curIndex = 1000 + (curIndex++ % 5);
-        Debug.Log($"curIndex: {curIndex}");
+        int monsterIndex = 1000 + curIndex;
 
-        if (deadMonsters.ContainsKey(curIndex))
+        if (deadMonsters.ContainsKey(monsterIndex))
         {
             curMonster.monsterController.SetWalkPoint(walkPoint);
-            curMonster = deadMonsters[curIndex].Revive(spawnPoint);
+            curMonster = deadMonsters[monsterIndex].Revive(spawnPoint);
         }
         else
         {
-            curMonster = Instantiate(monsterDatas[curIndex]);
+            curMonster = Instantiate(monsterDatas[monsterIndex]);
             curMonster.transform.position = spawnPoint.position;
             
             curMonster.SetWalkPoint(walkPoint);
-            curMonster.Initialize(Managers.Data.GetMonsterDataById(curIndex));
+            curMonster.Initialize(Managers.Data.GetMonsterDataById(monsterIndex));
         }
+
+        curIndex = (curIndex + 1) % 5;
     }
 
-    public void OnMonsterDead(object arg)
+    private void OnMonsterDead(object arg)
     {
         if (arg is Monster monster)
         {

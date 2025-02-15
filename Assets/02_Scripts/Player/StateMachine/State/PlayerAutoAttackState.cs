@@ -7,33 +7,24 @@
     public override void Enter()
     {
         base.Enter();
+        EventManager.Subscribe(GameEventType.OnShoot, Attack);
         StartAnimation(controller.playerAnimationData.AttackParameterHash);
-    }
-
-    public override void Update()
-    {
-        base.Update();
-        if (CheckAttackEnd())
-        {
-            controller.playerStateMachine.ChangeState<PlayerAutoAttackState>();
-        }
     }
     
     public override void Exit()
     {
         base.Exit();
+        EventManager.UnSubscribe(GameEventType.OnShoot, Attack);
         StopAnimation(controller.playerAnimationData.AttackParameterHash);
     }
-    
-    //공격이 끝나면 다시 공격
-    private bool CheckAttackEnd()
-    {
-        float normalizedTime = controller.animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        if (normalizedTime >= 1f)
-        {
-            return true;
-        }
 
-        return false;
+    public void SetTarget(Monster monster)
+    {
+        controller.attackController.SetTargetMonster(monster);
+    }
+    
+    private void Attack(object args)
+    {
+        controller.attackController.ShootArrow();
     }
 }

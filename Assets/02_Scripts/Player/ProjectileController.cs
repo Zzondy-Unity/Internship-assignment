@@ -4,7 +4,7 @@ public class ProjectileController : MonoBehaviour
 {
     // 화살 풀링 생각
     private Arrow _arrow;
-    private Transform spawnPivot;
+    [SerializeField] private Transform arrowPivot;
 
     public void Init()
     {
@@ -14,7 +14,7 @@ public class ProjectileController : MonoBehaviour
     public void Fire(Vector3 direction, int damage)
     {
         var arrow = Instantiate(_arrow);
-        arrow.transform.position = spawnPivot.position;
+        arrow.transform.position = arrowPivot.position;
         arrow.Init(direction, damage);
     }
 }

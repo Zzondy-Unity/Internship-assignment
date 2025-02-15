@@ -10,11 +10,20 @@
         StartAnimation(controller.monsterAnimationData.DeathParameterHash);
     }
 
+    public override void Update()
+    {
+        base.Update();
+        Disappear();
+    }
+    
     public override void Exit()
     {
         base.Exit();
         StopAnimation(controller.monsterAnimationData.DeathParameterHash);
     }
     
-    //TODO :: 3초 이후 투명화 및 콜라이더 제거
+    private void Disappear()
+    {
+        
+    }
 }

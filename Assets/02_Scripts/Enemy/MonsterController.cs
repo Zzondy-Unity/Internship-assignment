@@ -64,7 +64,7 @@ public class MonsterController : MonoBehaviour
     private void OnDead()
     {
         stateMachine.ChangeState<MonsterDeathState>();
-        EventManager.Publish(GameEventType.OnMonsterDead, this);
+        EventManager.Publish(GameEventType.OnMonsterDead, monster);
     }
 
     public void SetWalkPoint(Transform walkPoint)

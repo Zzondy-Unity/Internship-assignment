@@ -15,7 +15,7 @@ public class Arrow : MonoBehaviour
         rb.linearVelocity = direction * _speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -25,6 +25,8 @@ public class Arrow : MonoBehaviour
                 {
                     //공격성공 이펙트
                 }
+                // TODO :: 오브젝트풀로 반환
+                Destroy(gameObject);
             }
         }
     }
