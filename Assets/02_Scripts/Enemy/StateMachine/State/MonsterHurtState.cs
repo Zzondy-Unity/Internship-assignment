@@ -9,14 +9,8 @@ public class MonsterHurtState : MonsterBaseState
     public override void Enter()
     {
         base.Enter();
-        StartAnimation(controller.monsterAnimationData.HurtParameterHash);
-        Debug.Log("MonsterHurtState Enter");
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        StopAnimation(controller.monsterAnimationData.HurtParameterHash);
+        controller.animator.SetTrigger(controller.monsterAnimationData.HurtParameterHash);
+        //StartAnimation(controller.monsterAnimationData.HurtParameterHash);
     }
 
     public override void Update()
@@ -42,19 +36,25 @@ public class MonsterHurtState : MonsterBaseState
         {
             return false;
         }
-
+        
         return true;
     }
 
     private bool CheckAnimationEnd()
     {
         AnimatorStateInfo state = controller.animator.GetCurrentAnimatorStateInfo(0);
-        
-        float normalizedTime = state.normalizedTime;
-        if (normalizedTime >= 1f || state.IsTag("hit"))
+    
+        if (state.normalizedTime >= 1f && (state.IsTag("hit") || state.IsName("hurt")))
         {
             return true;
         }
+
+        if (!(state.IsTag("hit") || state.IsName("hurt")))
+        {
+            // hit태그나 hurt이름이 아닌 애니메이션중일경우 애니메이션이 끝난걸로 간주
+            return true;
+        }
+    
         return false;
     }
 }
