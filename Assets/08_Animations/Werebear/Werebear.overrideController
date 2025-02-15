@@ -8,4 +8,12 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Werebear
   m_Controller: {fileID: 9100000, guid: 79c72f52672e63245896a0f421592dfb, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 190fa7028dfc4614aac8306a08a1f321, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6e8e070843d056145806e880bd98ba58, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: bf3ca3d5362e91c409cfcd0e9cbc7708, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4abac9880c01ea34bac08e47854cd317, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6786b24ba8c9724408bfc2218b4f67f5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7ee214d540f308143a5cb988fc92ca2a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 97517376e7a91a741b982ba5f1e8a175, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b3b5a552cf57f344da6c4dfdabda8466, type: 2}

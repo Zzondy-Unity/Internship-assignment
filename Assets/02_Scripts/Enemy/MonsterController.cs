@@ -65,6 +65,8 @@ public class MonsterController : MonoBehaviour
     {
         stateMachine.ChangeState<MonsterDeathState>();
         EventManager.Publish(GameEventType.OnMonsterDead, monster);
+        
+        gameObject.layer = LayerMask.NameToLayer("IgnoreRaycast");
     }
 
     public void SetWalkPoint(Transform walkPoint)

@@ -10,7 +10,16 @@
         EventManager.Subscribe(GameEventType.OnShoot, Attack);
         StartAnimation(controller.playerAnimationData.AttackParameterHash);
     }
-    
+
+    public override void Update()
+    {
+        base.Update();
+        if (!CheckMonster(out Monster monster))
+        {
+            controller.playerStateMachine.ChangeState<PlayerIdleState>();
+        }
+    }
+
     public override void Exit()
     {
         base.Exit();
