@@ -25,8 +25,8 @@ public class Managers : SingletonDontDestroy<Managers>
     {
         _gameManager = new GameManager();
         _dataManager = new DataManager();
-        _spawnManager = new SpawnManager();
         _resourceManager = new ResourceManager();
+        _spawnManager = CreateManager<SpawnManager>(Instance.transform);
         _characterManager = CreateManager<CharacterManager>(Instance.transform);
         
         _resourceManager.Init();

@@ -5,6 +5,7 @@ public static class Constants
 {
     public const string MonsterDataPath = "CSVs/MonsterData/";
     public const string arrowPrefabPath = "Prefabs/Projectile/Arrow";
+    public const string MonsterPrefabPath = "Prefabs/Entity/Enemy";
     public static readonly Dictionary<string, Grade> GradeMapping = new Dictionary<string, Grade>()
     {
         {"일반", Grade.Normal},

@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
         playerAnimationData.Initialize();
         
         playerStateMachine = new PlayerStateMachine(player);
+        playerStateMachine.ChangeState<PlayerIdleState>();
     }
 
     private void Update()

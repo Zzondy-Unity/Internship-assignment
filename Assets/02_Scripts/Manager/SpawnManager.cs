@@ -1,25 +1,28 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class SpawnManager  : IManager
+public class SpawnManager  : MonoBehaviour, IManager
 {
-    private List<Monster> monsters = new List<Monster>();
     public Monster curMonster;
+
+    private int curIndex = 0;
+    private Dictionary<int, Monster> monsterDatas = new Dictionary<int, Monster>();
 
     public void Init()
     {
-        List<MonsterDataSO> datas = Managers.Data.GetMonsterDataSOs();
-        foreach (var data in datas)
+        var Monsters = Resources.LoadAll<Monster>(Constants.MonsterPrefabPath);
+        for (int i = 0; i < Monsters.Length; i++)
         {
-            //TODO :: 각 몬스터마다 맞는 SO를 생성해서 넣어줌
+            monsterDatas.Add(int.Parse(Monsters[i].name), Monsters[i]);
         }
     }
 
     public void SpawnMonsters()
     {
-        //TODO :: 모든 몬스터 가지고있음
+        curIndex = 1000 + (curIndex++ % 5);
+        Debug.Log($"curIndex: {curIndex}");
         
-        //TODO :: 몬스터를 차례대로 소환
+        curMonster = Instantiate(monsterDatas[curIndex]);
+        curMonster.Initialize(Managers.Data.GetMonsterDataById(curIndex));
     }
-    
-    //TODO :: 코루틴 매니저로 코루틴돌려주기
 }

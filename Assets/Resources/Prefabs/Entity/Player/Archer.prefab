@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8862129601374086743}
   - component: {fileID: 1410831136483600713}
   - component: {fileID: -1560112613359528084}
+  - component: {fileID: -3826605710920610625}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -155,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackController: {fileID: 0}
   projectileController: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!114 &1410831136483600713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +181,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7893a4523642dea4157ad018c78cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  detectionWidth: 6
+  detectionHeight: 8
+  detectionOffsetX: 14
+  detectionOffsetY: 2.5
+--- !u!114 &-3826605710920610625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399206133101088488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8743b38d23a41489a172d5ab5d6ca1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <playerAnimationData>k__BackingField:
+    idleParameterName: idle
+    walkParameterName: walk
+    attackParameterName: attack
 --- !u!1 &1812254793817621276
 GameObject:
   m_ObjectHideFlags: 0

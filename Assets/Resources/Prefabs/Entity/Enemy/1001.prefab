@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3501482769266982068}
   - component: {fileID: 4736989811240839999}
   m_Layer: 7
-  m_Name: EliteOrc
+  m_Name: 1001
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

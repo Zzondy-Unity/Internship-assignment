@@ -9,7 +9,7 @@
         base.Enter();
         StartAnimation(controller.playerAnimationData.IdleParameterHash);
     }
-
+    
     public override void Exit()
     {
         base.Exit();

@@ -1,6 +1,6 @@
-Name,Grade,Speed,Health
-Skeleton,일반,0.5,50
-Elite Orc,레어,1.0,100
-Wizard,매직,0.8,200
-Werebear,전설,2.0,500
-Orc rider,영웅,2.5,1000
+﻿Name,Grade,�Speed,Health,ID
+Skeleton,일반,0.5,50,1000
+Elite Orc,레어,1,100,1001
+Wizard,매직,0.8,200,1002
+Werebear,전설,2,500,1003
+Orc rider,영웅,2.5,1000,1004

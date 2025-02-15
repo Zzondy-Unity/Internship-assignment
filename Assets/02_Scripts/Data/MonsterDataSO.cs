@@ -6,6 +6,7 @@ public class MonsterDataSO : ScriptableObject
     public Grade grade;
     public float speed;
     public int health;
+    public int id;
 }
 
 public enum Grade
