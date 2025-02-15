@@ -68,13 +68,10 @@ public class PlayerAttackController : MonoBehaviour
         {
             foreach (var hit in hits)
             {
-                if (hit.TryGetComponent(out Monster monster))
+                if (hit.TryGetComponent(out Monster monster) && monster.isAlive)
                 {
-                    if (monster.isAlive)
-                    {
-                        return monster.transform.position;
-                        break;
-                    }
+                    return monster.transform.position;
+                    break;
                 }
             }
         }

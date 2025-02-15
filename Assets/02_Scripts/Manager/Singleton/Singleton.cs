@@ -10,11 +10,10 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = (T)FindAnyObjectByType(typeof(T));
+                _instance = FindFirstObjectByType<T>();
                 if (_instance == null)
                 {
-                    GameObject obj = new GameObject();
-                    obj.name = typeof(T).Name;
+                    GameObject obj = new GameObject(typeof(T).Name);
                     _instance = obj.AddComponent<T>();
                 }
             }
@@ -28,9 +27,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             _instance = this as T;
         }
-        else
+        else if(_instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }

@@ -7,6 +7,7 @@ public abstract class Monster : MonoBehaviour, IDamageable
     protected MonsterDataSO data;
     protected int health;
     public bool isAlive = true;
+    private Transform walkPoint;
     
     public virtual void Initialize(MonsterDataSO monsterDataSO)
     {
@@ -31,7 +32,33 @@ public abstract class Monster : MonoBehaviour, IDamageable
     private void OnDead()
     {
         // TODO :: 죽었을 때 일어나는 일
+        EventManager.Publish(GameEventType.OnMonsterDead, this);
         // 애니메이션 실행
-        Managers.Spawner.SpawnMonsters();
+    }
+
+    public Monster Revive(Transform spawnPoint)
+    {
+        if (isAlive) return null;
+        
+        isAlive = true;
+        health = data.health;
+        this.transform.position = spawnPoint.position;
+        WalkToWalkPoint();
+        return this;
+    }
+
+    private void WalkToWalkPoint()
+    {
+        //WalkeState로 변경 후 해당 위치로 이동
+    }
+
+    public int GetMonsterIDOfThis()
+    {
+        return data.id;
+    }
+
+    public void SetWalkPoint(Transform walkPoint)
+    {
+        this.walkPoint = walkPoint;
     }
 }
