@@ -8,6 +8,7 @@ public class Managers : SingletonDontDestroy<Managers>
     private ResourceManager _resourceManager;
     private GameManager _gameManager;
     private CoroutineManager _coroutineManager;
+    private ObjectPoolManager _objectPoolManager;
 
     public static DataManager Data { get {return Instance._dataManager; } }
     public static SpawnManager Spawner { get { return Instance._spawnManager; } }
@@ -15,6 +16,7 @@ public class Managers : SingletonDontDestroy<Managers>
     public static ResourceManager Resource { get { return Instance._resourceManager; } }
     public static GameManager Game { get { return Instance._gameManager; } }
     public static CoroutineManager Coroutine { get { return Instance._coroutineManager; } }
+    public static ObjectPoolManager ObjectPool { get { return Instance._objectPoolManager; } }
 
     protected override void Awake()
     {
@@ -28,10 +30,12 @@ public class Managers : SingletonDontDestroy<Managers>
         _gameManager = new GameManager();
         _dataManager = new DataManager();
         _resourceManager = new ResourceManager();
+        _objectPoolManager = CreateManager<ObjectPoolManager>(Instance.transform);
         _coroutineManager = CreateManager<CoroutineManager>(Instance.transform);
         _spawnManager = CreateManager<SpawnManager>(Instance.transform);
         _characterManager = CreateManager<CharacterManager>(Instance.transform);
-        
+
+        _objectPoolManager.Init();
         _coroutineManager.Init();
         _resourceManager.Init();
         _dataManager.Init();

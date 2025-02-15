@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
@@ -8,14 +6,18 @@ public class Arrow : MonoBehaviour
     private Camera _mainCamera;
     private int _damage;
     private int _speed = 10;
+    private bool isReleased = false;
     
     public void Init(Vector3 direction, int damage, Camera mainCamera)
     {
-        rb = GetComponent<Rigidbody2D>();
-        _damage = damage;
-        _mainCamera = mainCamera;
+        if(rb == null)
+            rb = GetComponent<Rigidbody2D>();
+        if(_mainCamera == null)
+            _mainCamera = mainCamera;
         
         rb.linearVelocity = direction * _speed;
+        isReleased = false;
+        _damage = damage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,8 +30,7 @@ public class Arrow : MonoBehaviour
                 {
                     //공격성공 이펙트
                 }
-                // TODO :: 오브젝트풀로 반환
-                Destroy(gameObject);
+                ReleaseToPool();
             }
         }
     }
@@ -38,7 +39,7 @@ public class Arrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            ReleaseToPool();
         }
     }
     
@@ -48,5 +49,14 @@ public class Arrow : MonoBehaviour
         
         Vector3 viewPoint = _mainCamera.WorldToViewportPoint(transformPosition);
         return viewPoint.x >= 0 && viewPoint.x <= 1 && viewPoint.y >= 0 && viewPoint.y <= 1;
+    }
+
+    private void ReleaseToPool()
+    {
+        if (!isReleased)
+        {
+            isReleased = true;
+            Managers.ObjectPool.ReturnToPool(typeof(Arrow), gameObject);
+        }
     }
 }
