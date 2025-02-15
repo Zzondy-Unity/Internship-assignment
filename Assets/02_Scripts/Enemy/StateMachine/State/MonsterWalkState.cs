@@ -51,7 +51,7 @@ public class MonsterWalkState : MonsterBaseState
         Vector2 direction = (targetPosition - controller.transform.position).normalized;
         float   speed = controller.monster.data.speed;
 
-        Vector2 newPosition = (Vector2)controller.transform.position + direction * Time.fixedDeltaTime;
+        Vector2 newPosition = (Vector2)controller.transform.position + Time.fixedDeltaTime * speed * direction;
         newPosition.y = controller.transform.position.y;
         controller.rb2D.MovePosition(newPosition);
     }
@@ -63,14 +63,7 @@ public class MonsterWalkState : MonsterBaseState
 
     private bool CheckMoving()
     {
-         float distance = Vector3.SqrMagnitude(targetPosition - controller.transform.position);
-         if (distance < controller.breakDistance)
-         {
-             return true;
-         }
-         else
-         {
-             return false;
-         }
+         float sqrDistance = Vector3.SqrMagnitude(targetPosition - controller.transform.position);
+         return sqrDistance < controller.breakDistance * controller.breakDistance;
     }
 }

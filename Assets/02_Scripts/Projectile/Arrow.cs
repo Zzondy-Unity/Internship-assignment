@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -19,7 +20,7 @@ public class Arrow : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (other.gameObject.TryGetComponent(out Monster monster))
+            if (other.gameObject.TryGetComponent(out Monster monster) && monster.isAlive)
             {
                 if (monster.TakeDamage(_damage))
                 {
@@ -28,6 +29,14 @@ public class Arrow : MonoBehaviour
                 // TODO :: 오브젝트풀로 반환
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 }
