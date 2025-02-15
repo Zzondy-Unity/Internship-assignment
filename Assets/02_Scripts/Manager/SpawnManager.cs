@@ -35,15 +35,17 @@ public class SpawnManager  : MonoBehaviour, IManager
 
         if (deadMonsters.ContainsKey(curIndex))
         {
+            curMonster.monsterController.SetWalkPoint(walkPoint);
             curMonster = deadMonsters[curIndex].Revive(spawnPoint);
         }
         else
         {
             curMonster = Instantiate(monsterDatas[curIndex]);
-            curMonster.Initialize(Managers.Data.GetMonsterDataById(curIndex));
             curMonster.transform.position = spawnPoint.position;
+            
+            curMonster.SetWalkPoint(walkPoint);
+            curMonster.Initialize(Managers.Data.GetMonsterDataById(curIndex));
         }
-        curMonster.SetWalkPoint(walkPoint);
     }
 
     public void OnMonsterDead(object arg)

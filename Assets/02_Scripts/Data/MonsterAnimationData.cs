@@ -4,8 +4,8 @@ using UnityEngine;
 [Serializable]
  public class MonsterAnimationData : AnimationData
 {
-    [SerializeField] private string hurtParameterName;
-    [SerializeField] private string deathParameterName;
+    [SerializeField] private string hurtParameterName = "hurt";
+    [SerializeField] private string deathParameterName = "death";
     
     public int HurtParameterHash { get; private set; }
     public int DeathParameterHash { get; private set; }

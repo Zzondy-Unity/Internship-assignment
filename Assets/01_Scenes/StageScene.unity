@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 198622821}
   - component: {fileID: 198622820}
   - component: {fileID: 198622819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1227,7 +1227,7 @@ Transform:
   m_GameObject: {fileID: 620311902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.30847, y: -0.48212075, z: -0.036373846}
+  m_LocalPosition: {x: 7.30847, y: -0.48212075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curMonster: {fileID: 0}
   spawnPoint: {fileID: 1251149577}
-  walkPoint: {fileID: 0}
+  walkPoint: {fileID: 620311903}
 --- !u!1 &1251149576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 1512516013}
   - component: {fileID: 1512516012}
   - component: {fileID: 1512516015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

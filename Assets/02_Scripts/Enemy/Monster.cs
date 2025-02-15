@@ -2,18 +2,19 @@ using UnityEngine;
 
 public abstract class Monster : MonoBehaviour, IDamageable
 {
-    public GameObject prefab;
-    
     public MonsterDataSO data { get; protected set; }
     public bool isAlive = true;
 
     public MonsterController monsterController;
+    private Transform walkPoint;
     
     public virtual void Initialize(MonsterDataSO monsterDataSO)
     {
         data = monsterDataSO;
         
         monsterController = GetComponent<MonsterController>();
+        monsterController.SetWalkPoint(walkPoint);
+        monsterController.Initialize(this);
     }
     
     public bool TakeDamage(int damage)
@@ -45,6 +46,6 @@ public abstract class Monster : MonoBehaviour, IDamageable
 
     public void SetWalkPoint(Transform walkPoint)
     {
-        monsterController.SetWalkPoint(walkPoint);
+        this.walkPoint = walkPoint;
     }
 }

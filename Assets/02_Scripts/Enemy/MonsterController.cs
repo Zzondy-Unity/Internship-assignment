@@ -7,25 +7,40 @@ public class MonsterController : MonoBehaviour
     public MonsterAnimationData monsterAnimationData { get; private set; }
     public Animator animator { get; private set; }
     private int health = 0;
-    private Transform walkPoint;
-    
-    public MonsterStateMachine stateMachine { get; private set; }
+    public Transform walkPoint { get; private set; }
+    public float breakDistance { get; } = 1f;
 
+    public MonsterStateMachine stateMachine { get; private set; }
+    public Rigidbody2D rb2D { get; private set; }
+
+    [SerializeField] private LayerMask GroundMask;
+    [SerializeField] private Transform GroundPoint;
+    public bool isGrounded { get; private set; }
+    
     public void Initialize(Monster monster)
     {
         monsterAnimationData = new MonsterAnimationData();
+        monsterAnimationData.Initialize();
         
         animator = GetComponentInChildren<Animator>();
+        rb2D = GetComponent<Rigidbody2D>();
         stateMachine = new MonsterStateMachine(monster);
         
         this.monster = monster;
         health = monster.data.health;
+        
+        stateMachine.ChangeState<MonsterWalkState>();
     }
 
     private void Update()
     {
         if(stateMachine != null && monster.isAlive)
             stateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        isGrounded = IsGround();
     }
 
     public bool TakeDamage(int damage)
@@ -39,12 +54,16 @@ public class MonsterController : MonoBehaviour
             monster.isAlive = false;
             OnDead();
         }
+        else
+        {
+            stateMachine.ChangeState<MonsterHurtState>();
+        }
         return true;
     }
     
     private void OnDead()
     {
-        animator.SetBool(monsterAnimationData.DeathParameterHash, true);
+        stateMachine.ChangeState<MonsterDeathState>();
         EventManager.Publish(GameEventType.OnMonsterDead, this);
     }
 
@@ -56,5 +75,16 @@ public class MonsterController : MonoBehaviour
     public void Heal(int amount)
     {
         health = Mathf.Min(health + amount, monster.data.health);
+    }
+
+    private bool IsGround()
+    {
+        float rayDistance = 0.2f;
+        Vector2 origin = GroundPoint.position;
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, rayDistance, GroundMask);
+        Debug.DrawRay(origin, Vector2.down * rayDistance, Color.red);
+        
+        return hit.collider != null;
     }
 }

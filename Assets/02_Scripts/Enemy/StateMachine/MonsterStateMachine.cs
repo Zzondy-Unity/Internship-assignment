@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class MonsterStateMachine : StateMachine
 {
@@ -24,6 +25,7 @@ public class MonsterStateMachine : StateMachine
         if (states.TryGetValue(typeof(T), out var state))
         {
             ChangeState(state);
+            Debug.Log($"Monster state changed to {typeof(T).Name}");
             return state;
         }
 

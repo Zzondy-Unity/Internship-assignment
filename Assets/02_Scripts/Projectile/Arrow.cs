@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _damage = damage;
         
-        rb.AddForce(direction *_speed, ForceMode2D.Force);
+        rb.linearVelocity = direction * _speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
