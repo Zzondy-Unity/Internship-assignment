@@ -6,7 +6,7 @@ public class PlayerStateMachine : StateMachine
 {
     public Player _player { get; }
     
-    private Dictionary<Type, PlayerBaseState> states;
+    private Dictionary<Type, PlayerBaseState> states; // Type을 키로, 상태를 값으로 가지는 딕셔너리
     
     public PlayerStateMachine(Player player)
     {
@@ -22,6 +22,11 @@ public class PlayerStateMachine : StateMachine
         };
     }
 
+    /// <summary>
+    /// 상태를 전환합니다.
+    /// </summary>
+    /// <typeparam name="T">전환하고자하는 상태</typeparam>
+    /// <returns>해당 상태를 반환합니다.</returns>
     public PlayerBaseState ChangeState<T>() where T : PlayerBaseState
     {
         if (states.TryGetValue(typeof(T), out var state))

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 플레이어의 소환을 관리하는 매니저입니다.
+/// </summary>
 public class CharacterManager : MonoBehaviour, IManager
 {
     [HideInInspector]public Player player;

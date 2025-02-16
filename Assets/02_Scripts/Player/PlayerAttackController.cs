@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum AttackType
@@ -11,9 +10,10 @@ public enum AttackType
 public class PlayerAttackController : MonoBehaviour
 {
     private Player _player;
-    public Monster targetMonster { get; private set; }
-    private AttackType curAttackType = AttackType.Auto;
     public ProjectileController projectileController;
+    
+    private AttackType curAttackType = AttackType.Auto;
+    public Monster targetMonster { get; private set; }
     
     public int Damage { get { return _player.PlayerData.damage; } }
 

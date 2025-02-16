@@ -1,20 +1,25 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// 몬스터의 행동을 조절합니다.
+/// 상태머신을 포함합니다.
+/// </summary>
 public class MonsterController : MonoBehaviour
 {
     public Monster monster { get; private set; }
-    [field : SerializeField] public MonsterAnimationData monsterAnimationData { get; private set; }
     public Animator animator { get; private set; }
     public Transform walkPoint { get; private set; }
     public float breakDistance { get; } = 1f;
 
     public MonsterStateMachine stateMachine { get; private set; }
+    [field : SerializeField] public MonsterAnimationData monsterAnimationData { get; private set; }
     public Rigidbody2D rb2D { get; private set; }
 
     [SerializeField] private LayerMask GroundMask;
     [SerializeField] private Transform GroundPoint;
+    
     public bool isGrounded { get; private set; }
+    
     
     public void Initialize(Monster monster)
     {
@@ -47,7 +52,10 @@ public class MonsterController : MonoBehaviour
         this.walkPoint = walkPoint;
     }
 
-
+    /// <summary>
+    /// 지면에 붙어있는지 여부를 판별합니다.
+    /// </summary>
+    /// <returns></returns>
     private bool IsGround()
     {
         float rayDistance = 0.2f;

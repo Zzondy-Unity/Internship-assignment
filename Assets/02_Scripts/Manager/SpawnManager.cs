@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 몬스터의 스폰을 관리하는 매니저입니다.
+/// </summary>
 public class SpawnManager  : MonoBehaviour, IManager
 {
     public Monster curMonster;
@@ -11,6 +14,9 @@ public class SpawnManager  : MonoBehaviour, IManager
     private Dictionary<int, Monster> monsterDatas = new Dictionary<int, Monster>();
     private Dictionary<int, Monster> deadMonsters = new Dictionary<int, Monster>();
 
+    /// <summary>
+    /// 몬스터 프리팹을 읽고 이를 딕셔너리에 저장합니다.
+    /// </summary>
     public void Init()
     {
         var Monsters = Resources.LoadAll<Monster>(Constants.MonsterPrefabPath);
@@ -26,7 +32,11 @@ public class SpawnManager  : MonoBehaviour, IManager
     {
         EventManager.UnSubscribe(GameEventType.OnMonsterDead, OnMonsterDead);
     }
-
+    
+    /// <summary>
+    /// 몬스터를 순서에 맞게 소환합니다.
+    /// 다만, 이미 죽은 몬스터는 재활용합니다.
+    /// </summary>
     public void SpawnMonsters()
     {
         if (curMonster != null && curMonster.isAlive) return;
@@ -50,6 +60,10 @@ public class SpawnManager  : MonoBehaviour, IManager
         curIndex = (curIndex + 1) % 5;
     }
 
+    /// <summary>
+    /// 몬스터가 죽을때 딕셔너리에 저장하고 새로운 몬스터를 소환합니다.
+    /// </summary>
+    /// <param name="arg"></param>
     private void OnMonsterDead(object arg)
     {
         if (arg is Monster monster)

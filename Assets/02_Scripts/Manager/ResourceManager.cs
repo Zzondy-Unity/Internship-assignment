@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 리소스를 관리하는 매니저입니다.
+/// </summary>
 public class ResourceManager : IManager
 {
     private Dictionary<string, object> assetPools;

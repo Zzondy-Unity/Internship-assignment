@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+/// <summary>
+/// 오브젝트 풀링을 위한 매니저입니다.
+/// </summary>
 public class ObjectPoolManager : MonoBehaviour, IManager
 {
     private Dictionary<Type, ObjectPool<GameObject>> poolDictionary = new Dictionary<Type, ObjectPool<GameObject>>();
@@ -11,7 +14,14 @@ public class ObjectPoolManager : MonoBehaviour, IManager
     {
         
     }
-
+    
+    /// <summary>
+    /// 풀을 생성합니다.
+    /// </summary>
+    /// <param name="type">생성할 타입</param>
+    /// <param name="prefab">프리팹</param>
+    /// <param name="initialSize">풀 초기 사이즈</param>
+    /// <param name="maxSize">최대 사이즈</param>
     public void CreatePool(Type type, GameObject prefab, int initialSize = 10, int maxSize = 20)
     {
         if (poolDictionary.ContainsKey(type))
@@ -45,7 +55,7 @@ public class ObjectPoolManager : MonoBehaviour, IManager
         
         poolDictionary.Add(type, pool);
     }
-
+    
     public GameObject SpawnFromPool(Type type, Vector3 position, Quaternion rotation)
     {
         if (poolDictionary.TryGetValue(type, out ObjectPool<GameObject> pool))

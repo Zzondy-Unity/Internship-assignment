@@ -1,12 +1,15 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 체력바를 표시합니다.
+/// </summary>
 public class HPBar : MonoBehaviour
 {
     [SerializeField] private CanvasGroup HPCanvasGroup;
     [SerializeField] private Image HP;
     [SerializeField] private Image delayHP;
+    
     private float decreaseSpeed = 10f;
     private bool isDamaging = false;
 

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 체력관련 로직을 담당하는 클래스입니다.
+/// </summary>
 [RequireComponent(typeof(HPBar))]
 public class MonsterHealthSystem : MonoBehaviour
 {
@@ -19,6 +22,11 @@ public class MonsterHealthSystem : MonoBehaviour
         healthBar.Init();
     }
     
+    /// <summary>
+    /// 데미지를 계산합니다.
+    /// </summary>
+    /// <param name="damage">데미지의 총량(양수)</param>
+    /// <returns>데미지를 입을 경우 true를 반환합니다.</returns>
     public bool TakeDamage(int damage)
     {
         if(!monster.isAlive) return false;
@@ -44,6 +52,9 @@ public class MonsterHealthSystem : MonoBehaviour
         healthBar.UpdateHPBar(health / maxHealth);
     }
 
+    /// <summary>
+    /// 죽었을 때의 행동을 정의합니다.
+    /// </summary>
     private void OnDead()
     {
         monster.monsterController.stateMachine.ChangeState<MonsterDeathState>();

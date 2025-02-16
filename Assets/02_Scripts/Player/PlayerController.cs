@@ -1,6 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// 플레이어의 행동을 조절하는 클래스입니다.
+/// 상태머신과 AttackController를 가집니다.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [field: Header("AnimationData")]

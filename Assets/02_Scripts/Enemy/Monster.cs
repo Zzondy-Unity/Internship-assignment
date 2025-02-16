@@ -3,14 +3,13 @@ using UnityEngine.EventSystems;
 
 public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
 {
-    public MonsterDataSO data { get; protected set; }
-    public bool isAlive = true;
+    public MonsterDataSO data { get; protected set; }   // 몬스터의 기본 정보 
 
-    public MonsterController monsterController;
-    private Transform walkPoint;
+    public MonsterController monsterController;         
+    private Transform walkPoint;    // 몬스터가 걸어가야할 위치입니다.
     public SpriteRenderer spriteRenderer { get; protected set; }
     public MonsterHealthSystem monsterHealthSystem { get; protected set; }
-    private MonsterIndicator monsterIndicator;
+    public bool isAlive = true;
     
     public virtual void Initialize(MonsterDataSO monsterDataSO)
     {
@@ -31,11 +30,17 @@ public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
         return monsterHealthSystem.TakeDamage(damage);
     }
 
-    
+    /// <summary>
+    /// 몬스터를 부활시킵니다.
+    /// </summary>
+    /// <param name="spawnPoint"></param>
+    /// <returns></returns>
     public Monster Revive(Transform spawnPoint)
     {
+        // 살아있는 몬스터일 경우 null을 반환합니다.
         if (isAlive) return null;
-
+        
+        // 체력 및 위치를 되돌립니다.
         isAlive = true;
         monsterHealthSystem.Heal(data.health);
         monsterHealthSystem.ShowHPBar();
@@ -62,10 +67,13 @@ public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
         this.walkPoint = walkPoint;
     }
     
-    
+    /// <summary>
+    /// 몬스터 클릭시 정보를 보여주는 popup UI를 띄웁니다.
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         if(isAlive)
-            monsterIndicator = Managers.UI.Show<MonsterIndicator>(this);
+            Managers.UI.Show<MonsterIndicator>(this);
     }
 }

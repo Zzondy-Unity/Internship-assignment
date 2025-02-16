@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 매니저 총괄 클래스이며 싱글톤입니다.
+/// </summary>
 public class Managers : SingletonDontDestroy<Managers>
 {
     private DataManager _dataManager;
@@ -27,6 +30,10 @@ public class Managers : SingletonDontDestroy<Managers>
         InitializeManagers();
     }
     
+    /// <summary>
+    /// 매니저를 생성 및 초기화합니다.
+    /// MonoBehaviour인 매니저는 CreateManager를하고 순서에 맞게 초기화합니다.
+    /// </summary>
     private void InitializeManagers()
     {
         _gameManager = new GameManager();

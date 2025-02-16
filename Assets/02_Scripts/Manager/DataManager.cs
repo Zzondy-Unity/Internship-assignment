@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 데이터를 파싱하는 클래스입니다.
+/// </summary>
 public class DataManager : IManager
 {
     private Dictionary<int, MonsterDataSO> monsterDatas = new();
@@ -15,6 +18,9 @@ public class DataManager : IManager
         return monsterDatas[id];
     }
     
+    /// <summary>
+    /// SampleMonsterCSV파일을 읽어옵니다.
+    /// </summary>
     private void ReadSampleMonster()
     {
         string path = Constants.MonsterDataPath + "sampleMonster";

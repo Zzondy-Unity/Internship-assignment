@@ -22,8 +22,10 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // 태그가 "Enemy"이고 화면 안에서 맞았을 경우에만 작동합니다.
         if (other.gameObject.CompareTag("Enemy") && IsVisibleOnScreen(other.transform.position))
         {
+            // 몬스터가 살아있을 경우에만 작동합니다.
             if (other.gameObject.TryGetComponent(out Monster monster) && monster.isAlive)
             {
                 if (monster.TakeDamage(_damage))
@@ -35,6 +37,10 @@ public class Arrow : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// 화면 밖으로 나갈 시 사라집니다.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Wall"))

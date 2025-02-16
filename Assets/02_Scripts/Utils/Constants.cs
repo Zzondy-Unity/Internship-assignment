@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 
-
+/// <summary>
+/// 전역적으로 사용될 수 있는 값들을 저장합니다.
+/// </summary>
 public static class Constants
 {
     public const string MonsterDataPath = "CSVs/MonsterData/";

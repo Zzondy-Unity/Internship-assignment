@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UI를 관리하는 매니저입니다.
+/// </summary>
 public class UIManager : MonoBehaviour, IManager
 {
     private GameObject PopupCanvas;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public delegate void EventListener(object args);
 
+/// <summary>
+/// 이벤트 버스를 담당하는 매니저입니다.
+/// </summary>
 public static class EventManager
 {
     private static readonly Dictionary<GameEventType, List<EventListener>> eventListenerDictionary = new Dictionary<GameEventType, List<EventListener>>();
