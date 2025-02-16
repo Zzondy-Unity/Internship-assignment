@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour, IManager
 {
+    private GameObject PopupCanvas;
     public void Init()
     {
-        
+        var PopupCanvasPrefab = Resources.Load<GameObject>("UI/@Popup");
+        PopupCanvas = Instantiate(PopupCanvasPrefab, transform);
     }
     
     private Dictionary<Type, GameObject> openUI = new Dictionary<Type, GameObject>();
@@ -21,6 +23,8 @@ public class UIManager : MonoBehaviour, IManager
         if (isOpen) return ui;
         
         openUI[type] = ui.gameObject;
+        ui.gameObject.SetActive(true);
+        ui.gameObject.transform.SetParent(PopupCanvas.transform);
         ui.OnShow(arg);
         return ui;
     }
@@ -76,5 +80,17 @@ public class UIManager : MonoBehaviour, IManager
         }
 
         return (T)ui;
+    }
+
+    public T IsOpened<T>() where T : UIBase
+    {
+        if (openUI.ContainsKey(typeof(T)))
+        {
+            return (T)openUI[typeof(T)].GetComponent<UIBase>();
+        }
+        else
+        {
+            return null;
+        }
     }
 }

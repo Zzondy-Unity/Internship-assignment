@@ -48,6 +48,11 @@ public class MonsterHealthSystem : MonoBehaviour
     {
         monster.monsterController.stateMachine.ChangeState<MonsterDeathState>();
         EventManager.Publish(GameEventType.OnMonsterDead, monster);
+
+        if (Managers.UI.IsOpened<MonsterIndicator>() != null)
+        {
+            Managers.UI.Hide<MonsterIndicator>();
+        }
     }
 
     public void HideHPBar()

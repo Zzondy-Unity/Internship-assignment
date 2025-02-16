@@ -10,6 +10,7 @@ public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
     private Transform walkPoint;
     public SpriteRenderer spriteRenderer { get; protected set; }
     public MonsterHealthSystem monsterHealthSystem { get; protected set; }
+    private MonsterIndicator monsterIndicator;
     
     public virtual void Initialize(MonsterDataSO monsterDataSO)
     {
@@ -64,6 +65,7 @@ public abstract class Monster : MonoBehaviour, IDamageable, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        Managers.UI.Show<MonsterIndicator>(this);
+        if(isAlive)
+            monsterIndicator = Managers.UI.Show<MonsterIndicator>(this);
     }
 }
